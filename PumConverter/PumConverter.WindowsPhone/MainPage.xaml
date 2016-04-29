@@ -7,12 +7,42 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <x:Double x:Key="StandardFontSize">22</x:Double>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+        </Style>
+
+        <Style TargetType="TextBox" >
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style TargetType="Button" >
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+    </Page.Resources>
 
     <Grid>
         <StackPanel Margin="10">
-            <TextBox x:Name="inputEntry" PlaceholderText="Length in meters"/>
+            <TextBox x:Name="inputEntry"
+                     PlaceholderText="Length in meters"/>
             <TextBlock x:Name="outputLabel"/>
-            <Button x:Name="convertButton" Content="Convert to feets" HorizontalAlignment="Right" Click="convertButton_Click"/>
+            <Button 
+                x:Name="convertButton" 
+                Content="Convert to feets" 
+                HorizontalAlignment="Right" 
+                Click="convertButton_Click" 
+                             
+                />
         </StackPanel>
     </Grid>
 </Page>
