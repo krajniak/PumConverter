@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -20,17 +21,26 @@ namespace PumConverter
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
         const double FootToMeters = 0.3048;
         const double InchToMeters = 0.0254;
+
+        private string _entryValue;
+        public string EntryValue {
+            get { return _entryValue; }
+            set { _entryValue = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EntryValue))); }
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            this.DataContext = this;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -47,19 +57,29 @@ namespace PumConverter
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
         }
-
+        private string MetersToFeet(string metersString)
+        {
+            try
+            {
+                var meteres = double.Parse(metersString);
+                var feet = Math.Floor(meteres / FootToMeters);
+                var inches = Math.Round((meteres - feet * FootToMeters) / InchToMeters);
+                if (inches == 12.0) { feet += 1; inches = 0; }
+                if (feet == 0)
+                    return $"{meteres}m equals {inches}''";
+                else if (inches == 0)
+                    return $"{meteres}m equals {feet}'";
+                else
+                    return $"{meteres}m equals {feet}'{inches}''";
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
         private void convertButton_Click(object sender, RoutedEventArgs e)
         {
-            var meteres = double.Parse(inputEntry.Text);
-            var feet = Math.Floor(meteres / FootToMeters);
-            var inches = Math.Round((meteres - feet * FootToMeters)/InchToMeters);
-            if (inches == 12.0) { feet += 1;inches = 0; }
-            if (feet == 0)
-                outputLabel.Text = $"{meteres}m equals {inches}''";
-            else if (inches == 0)
-                outputLabel.Text = $"{meteres}m equals {feet}'";
-            else
-                outputLabel.Text = $"{meteres}m equals {feet}'{inches}''";
+            outputLabel.Text = MetersToFeet(EntryValue);
         }
     }
 }

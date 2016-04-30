@@ -34,7 +34,8 @@
     <Grid>
         <StackPanel Margin="10">
             <TextBox x:Name="inputEntry"
-                     PlaceholderText="Length in meters"/>
+                     PlaceholderText="Length in meters"
+                     Text="{Binding EntryValue,Mode=TwoWay}"/>
             <TextBlock x:Name="outputLabel"/>
             <Button 
                 x:Name="convertButton" 
