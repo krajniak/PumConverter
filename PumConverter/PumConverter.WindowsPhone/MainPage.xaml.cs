@@ -23,9 +23,6 @@ namespace PumConverter
     /// </summary>
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
-        const double FootToMeters = 0.3048;
-        const double InchToMeters = 0.0254;
-
         private string _entryValue;
         public string EntryValue {
             get { return _entryValue; }
@@ -56,30 +53,6 @@ namespace PumConverter
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
-        }
-        private string MetersToFeet(string metersString)
-        {
-            try
-            {
-                var meteres = double.Parse(metersString);
-                var feet = Math.Floor(meteres / FootToMeters);
-                var inches = Math.Round((meteres - feet * FootToMeters) / InchToMeters);
-                if (inches == 12.0) { feet += 1; inches = 0; }
-                if (feet == 0)
-                    return $"{meteres}m equals {inches}''";
-                else if (inches == 0)
-                    return $"{meteres}m equals {feet}'";
-                else
-                    return $"{meteres}m equals {feet}'{inches}''";
-            }
-            catch
-            {
-                return string.Empty;
-            }
-        }
-        private void convertButton_Click(object sender, RoutedEventArgs e)
-        {
-            outputLabel.Text = MetersToFeet(EntryValue);
         }
     }
 }

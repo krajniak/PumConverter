@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
+        <local:MetersToFeetValueConverter x:Key="MetersToFeetValueConverter"/>
         <x:Double x:Key="StandardFontSize">22</x:Double>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
@@ -36,14 +37,7 @@
             <TextBox x:Name="inputEntry"
                      PlaceholderText="Length in meters"
                      Text="{Binding EntryValue,Mode=TwoWay}"/>
-            <TextBlock x:Name="outputLabel"/>
-            <Button 
-                x:Name="convertButton" 
-                Content="Convert to feets" 
-                HorizontalAlignment="Right" 
-                Click="convertButton_Click" 
-                             
-                />
+            <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
         </StackPanel>
     </Grid>
 </Page>
