@@ -36,7 +36,7 @@
         <StackPanel Margin="10">
             <TextBox x:Name="inputEntry"
                      PlaceholderText="Length in meters"
-                     Text="{Binding EntryValue,Mode=TwoWay}"/>
+                     Text="{Binding EntryValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
         </StackPanel>
     </Grid>

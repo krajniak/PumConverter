@@ -23,18 +23,14 @@ namespace PumConverter
     /// </summary>
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
-        private string _entryValue;
-        public string EntryValue {
-            get { return _entryValue; }
-            set { _entryValue = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EntryValue))); }
-        }
+        private UnitConverterViewModel _viewModel = new UnitConverterViewModel();
 
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            this.DataContext = this;
+            this.DataContext = _viewModel;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
