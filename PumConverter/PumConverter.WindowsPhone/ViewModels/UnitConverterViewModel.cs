@@ -6,17 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PumConverter
+namespace PumConverter.ViewModels
 {
-    public class UnitConverterViewModel : INotifyPropertyChanged
+    public class UnitConverterViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string _entryValue;
         public string EntryValue
         {
             get { return _entryValue; }
-            set { _entryValue = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EntryValue))); BackspaceCommand.RaiseCanExecuteChanged(); }
+            set { _entryValue = value; RaisePropertyChanged(); BackspaceCommand.RaiseCanExecuteChanged(); }
         }
 
         public UnitConverterViewModel()

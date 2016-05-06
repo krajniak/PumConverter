@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PumConverter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -21,7 +22,7 @@ namespace PumConverter
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page, INotifyPropertyChanged
+    public sealed partial class MainPage : Page
     {
         private UnitConverterViewModel _viewModel = new UnitConverterViewModel();
 
@@ -32,9 +33,7 @@ namespace PumConverter
             this.NavigationCacheMode = NavigationCacheMode.Required;
             this.DataContext = _viewModel;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
