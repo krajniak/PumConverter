@@ -20,7 +20,7 @@ namespace PumConverter
 
         public event EventHandler CanExecuteChanged;
 
-        public void RaiseExecuteChanged() { CanExecuteChanged?.Invoke(this, EventArgs.Empty); }
+        public void RaiseCanExecuteChanged() { CanExecuteChanged?.Invoke(this, EventArgs.Empty); }
 
         public bool CanExecute(object parameter)
         {

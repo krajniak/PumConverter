@@ -38,6 +38,8 @@
                      PlaceholderText="Length in meters"
                      Text="{Binding EntryValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
+            <Button Command="{Binding BackspaceCommand}" FontFamily="Segoe UI Symbol"></Button>
+            <Button Command="{Binding ZeroCommand}">0</Button>
         </StackPanel>
     </Grid>
 </Page>
