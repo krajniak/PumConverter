@@ -27,7 +27,8 @@
             <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         </Style>
 
     </Page.Resources>
@@ -38,8 +39,16 @@
                      PlaceholderText="Length in meters"
                      Text="{Binding EntryValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
-            <Button Command="{Binding BackspaceCommand}" FontFamily="Segoe UI Symbol"></Button>
-            <Button Command="{Binding ZeroCommand}">0</Button>
+            <GridView ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
+
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Label}" 
+                                Command="{Binding ExecuteCommand}" 
+                                />
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </StackPanel>
     </Grid>
 </Page>

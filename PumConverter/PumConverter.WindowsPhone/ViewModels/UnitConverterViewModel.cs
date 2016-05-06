@@ -14,16 +14,22 @@ namespace PumConverter.ViewModels
         public string EntryValue
         {
             get { return _entryValue; }
-            set { _entryValue = value; RaisePropertyChanged(); BackspaceCommand.RaiseCanExecuteChanged(); }
+            set { _entryValue = value; RaisePropertyChanged(); }
         }
+
+        public List<BaseOnScreenButtonViewModel> OnScreenKeyboardButtons { get; private set; }
 
         public UnitConverterViewModel()
         {
-            BackspaceCommand = new RelayCommand(o => EntryValue = EntryValue?.Substring(0, EntryValue.Length - 1), o => (EntryValue?.Length ?? 0) != 0);
-            ZeroCommand = new RelayCommand(o => EntryValue += "0");
+            var buttonList = new List<BaseOnScreenButtonViewModel>(
+                Enumerable
+                .Range(0, 10)
+                .Select(x => (x+1)%10 )
+                .Select(x => new AppendButtonViewModel(this) { Label = x.ToString(), AppendString = x.ToString() })
+                );
+
+            OnScreenKeyboardButtons = buttonList;
         }
 
-        public RelayCommand BackspaceCommand { get; private set; } 
-        public RelayCommand ZeroCommand { get; private set; }
     }
 }
