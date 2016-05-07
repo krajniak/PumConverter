@@ -28,6 +28,13 @@ namespace PumConverter.ViewModels
                 .Select(x => new AppendButtonViewModel(this) { Label = x.ToString(), AppendString = x.ToString() })
                 );
 
+            buttonList.Add(new BackspaceOnScreenButtonViewModel(this) { Label = "" });
+            buttonList.Add(new ClearOnScreenButtonViewModel(this) { Label = "" });
+
+            buttonList.Add(new AppendButtonViewModel(this) { Label = ".", AppendString = "." });
+            buttonList.Add(new AppendButtonViewModel(this) { Label = "'", AppendString = "'" });
+            buttonList.Add(new AppendButtonViewModel(this) { Label = "''", AppendString = "''" });
+
             OnScreenKeyboardButtons = buttonList;
         }
 
