@@ -40,12 +40,22 @@
                      Text="{Binding EntryValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
             <GridView ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
-
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Width" Value="80"/>
+                        <Setter Property="Height" Value="80"/>
+                        <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding Label}" 
                                 Command="{Binding ExecuteCommand}" 
-                                />
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                MinWidth="0"/>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
