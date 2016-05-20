@@ -17,6 +17,14 @@ namespace PumConverter.ViewModels
             set { _entryValue = value; RaisePropertyChanged(); }
         }
 
+        private bool _isMetricToImperial;
+
+        public bool IsMetricToImperial
+        {
+            get { return _isMetricToImperial; }
+            set { _isMetricToImperial = value; RaisePropertyChanged(); }
+        }
+
         public List<BaseOnScreenButtonViewModel> OnScreenKeyboardButtons { get; private set; }
 
         public UnitConverterViewModel()

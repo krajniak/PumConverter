@@ -34,12 +34,18 @@
     </Page.Resources>
 
     <Grid>
-        <StackPanel Margin="10">
-            <TextBox x:Name="inputEntry"
-                     PlaceholderText="Length in meters"
-                     Text="{Binding EntryValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
-            <GridView ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0">
+                <TextBlock Text="{Binding EntryValue}"/>
+            </Viewbox>
+            <TextBlock Grid.Row="1" x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
+            <GridView Grid.Row="2" ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">
                         <Setter Property="Width" Value="80"/>
@@ -59,6 +65,12 @@
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
-        </StackPanel>
+            <ToggleSwitch 
+                Grid.Row="3" 
+                IsOn="{Binding IsMetricToImperial, Mode=TwoWay}"
+                OnContent="Metric to Imperial" 
+                OffContent="Imperial to Metric">
+            </ToggleSwitch>
+        </Grid>
     </Grid>
 </Page>
