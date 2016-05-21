@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PumConverter.ViewModels
+namespace PumConverter.ViewModels.OnScreenKeyboard
 {
     public class ClearOnScreenButtonViewModel : BaseNonEmptyEntryValueButtonViewModel
     {
-        public ClearOnScreenButtonViewModel(UnitConverterViewModel parentViewModel) : base(parentViewModel)
+        public ClearOnScreenButtonViewModel(IStringProvider stringProvider) : base(stringProvider)
         {
         }
 
         protected override void Execute()
         {
-            _parentViewModel.EntryValue = string.Empty;
+            _stringProvider.ProvidedString = string.Empty;
         }
     }
 }

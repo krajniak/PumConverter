@@ -6,17 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PumConverter.ViewModels
+namespace PumConverter.ViewModels.OnScreenKeyboard
 {
     public abstract class BaseOnScreenButtonViewModel : BaseViewModel
     {
         private string _label;
-        protected UnitConverterViewModel _parentViewModel;
       
-        public BaseOnScreenButtonViewModel(UnitConverterViewModel parentViewModel)
+        public BaseOnScreenButtonViewModel()
         {
-            _parentViewModel = parentViewModel;
-
             ExecuteCommand = new RelayCommand(_ => Execute(), _ => CanExecute() );
         }
         

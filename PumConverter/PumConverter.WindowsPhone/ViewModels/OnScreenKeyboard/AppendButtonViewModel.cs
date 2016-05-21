@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PumConverter.ViewModels
+namespace PumConverter.ViewModels.OnScreenKeyboard
 {
     public class AppendButtonViewModel : BaseOnScreenButtonViewModel
     {
         private string _appendString;
+        private IStringProvider _stringProvider;
 
-        public AppendButtonViewModel(UnitConverterViewModel parentViewModel) : base(parentViewModel)
+        public AppendButtonViewModel(IStringProvider stringProvider) : base()
         {
-
+            _stringProvider = stringProvider;
         }
 
         public string AppendString { get { return _appendString; } set { _appendString = value; RaisePropertyChanged(); } }
@@ -21,7 +22,7 @@ namespace PumConverter.ViewModels
         {
             base.Execute();
 
-            _parentViewModel.EntryValue += AppendString;
+            _stringProvider.ProvidedString += AppendString;
         }
     }
 }

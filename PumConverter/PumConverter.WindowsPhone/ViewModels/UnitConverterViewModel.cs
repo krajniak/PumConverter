@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PumConverter.ViewModels.OnScreenKeyboard;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,13 +9,17 @@ using System.Windows.Input;
 
 namespace PumConverter.ViewModels
 {
-    public class UnitConverterViewModel : BaseViewModel
+    public class UnitConverterViewModel : BaseViewModel, IStringProvider
     {
         private string _entryValue;
         public string EntryValue
         {
             get { return _entryValue; }
-            set { _entryValue = value; RaisePropertyChanged(); }
+            set {
+                _entryValue = value;
+                RaisePropertyChanged();
+                ProvidedStringChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private bool _isMetricToImperial;
@@ -46,5 +51,8 @@ namespace PumConverter.ViewModels
             OnScreenKeyboardButtons = buttonList;
         }
 
+
+        public string ProvidedString { get { return EntryValue; } set { EntryValue = value; } }
+        public event EventHandler ProvidedStringChanged;
     }
 }

@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PumConverter.ViewModels
+namespace PumConverter.ViewModels.OnScreenKeyboard
 {
     public class BackspaceOnScreenButtonViewModel : BaseNonEmptyEntryValueButtonViewModel
     {
-        public BackspaceOnScreenButtonViewModel(UnitConverterViewModel parentViewModel) : base(parentViewModel)
+        public BackspaceOnScreenButtonViewModel(IStringProvider stringProvider) : base(stringProvider)
         {
         }
 
         protected override void Execute()
         {
-            _parentViewModel.EntryValue = _parentViewModel.EntryValue.Substring(0, _parentViewModel.EntryValue.Length - 1); 
+            _stringProvider.ProvidedString = _stringProvider.ProvidedString.Substring(0, _stringProvider.ProvidedString.Length - 1); 
         }
     }
 }
