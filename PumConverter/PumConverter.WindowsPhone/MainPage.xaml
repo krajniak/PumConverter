@@ -15,6 +15,11 @@
             <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
         </Style>
 
+        <Style x:Key="ConvertertEntryStyle"  TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <Style TargetType="TextBox" >
             <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
             <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
@@ -44,7 +49,13 @@
             <Viewbox Grid.Row="0">
                 <TextBlock Text="{Binding EntryValue}"/>
             </Viewbox>
-            <TextBlock Grid.Row="1" x:Name="outputLabel" Text="{Binding EntryValue, Converter={StaticResource MetersToFeetValueConverter}}"/>
+            <Button Grid.Row="1" DataContext="{Binding ConverterEntry}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding From}" Style ="{StaticResource ConvertertEntryStyle}"/>
+                    <TextBlock Text="{Binding To}"  Style ="{StaticResource ConvertertEntryStyle}"/>
+
+                </StackPanel>
+            </Button>
             <GridView Grid.Row="2" ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
                 <GridView.ItemContainerStyle>
                     <Style TargetType="GridViewItem">

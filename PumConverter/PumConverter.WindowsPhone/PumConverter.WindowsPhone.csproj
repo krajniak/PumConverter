@@ -96,6 +96,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\OnScreenKeyboard\AppendButtonViewModel.cs" />
     <Compile Include="ViewModels\OnScreenKeyboard\ClearOnScreenButtonViewModel.cs" />
+    <Compile Include="ViewModels\UnitConverterEntryViewModel.cs" />
     <Compile Include="ViewModels\UnitConverterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -32,6 +32,14 @@ namespace PumConverter.ViewModels
 
         public List<BaseOnScreenButtonViewModel> OnScreenKeyboardButtons { get; private set; }
 
+        private UnitConverterEntryViewModel _converterEntry;
+
+        public UnitConverterEntryViewModel ConverterEntry
+        {
+            get { return _converterEntry; }
+            set { _converterEntry = value; RaisePropertyChanged(); }
+        }
+
         public UnitConverterViewModel()
         {
             var buttonList = new List<BaseOnScreenButtonViewModel>(
@@ -49,6 +57,8 @@ namespace PumConverter.ViewModels
             buttonList.Add(new AppendButtonViewModel(this) { Label = "''", AppendString = "''" });
 
             OnScreenKeyboardButtons = buttonList;
+
+            ConverterEntry = new UnitConverterEntryViewModel(this);
         }
 
 
