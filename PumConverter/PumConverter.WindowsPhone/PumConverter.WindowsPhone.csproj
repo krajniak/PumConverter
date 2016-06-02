@@ -84,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStringProvider.cs" />
+    <Compile Include="Model\Units\NamedUnit.cs" />
+    <Compile Include="Model\Units\UnitSystem.cs" />
+    <Compile Include="Model\Units\UnitCategory.cs" />
     <Compile Include="ViewModels\OnScreenKeyboard\BackspaceOnScreenButtonViewModel.cs" />
     <Compile Include="ViewModels\OnScreenKeyboard\BaseNonEmptyEntryValueButtonViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
