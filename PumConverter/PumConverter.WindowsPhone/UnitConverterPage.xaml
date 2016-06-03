@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="PumConverter.UnitConverterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PumConverter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local:MetersToFeetValueConverter x:Key="MetersToFeetValueConverter"/>
+        <x:Double x:Key="StandardFontSize">22</x:Double>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+        </Style>
+
+        <Style x:Key="ConvertertEntryStyle"  TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="TextBox" >
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style TargetType="Button" >
+            <Setter Property="FontSize" Value="{StaticResource StandardFontSize}"/>
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0">
+                <TextBlock Text="{Binding EntryValue}"/>
+            </Viewbox>
+            <Button Grid.Row="1" DataContext="{Binding ConverterEntry}" Command="{Binding NextNamedUnitCommand}">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding From}" Style ="{StaticResource ConvertertEntryStyle}"/>
+                    <TextBlock Text="{Binding To}"  Style ="{StaticResource ConvertertEntryStyle}"/>
+
+                </StackPanel>
+            </Button>
+            <GridView Grid.Row="2" ItemsSource="{Binding OnScreenKeyboardButtons}" Width="241" Padding="0">
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="Width" Value="80"/>
+                        <Setter Property="Height" Value="80"/>
+                        <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Label}" 
+                                Command="{Binding ExecuteCommand}" 
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                MinWidth="0"/>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+            <ToggleSwitch 
+                Grid.Row="3" 
+                IsOn="{Binding IsMetricToImperial, Mode=TwoWay}"
+                OnContent="Metric to Imperial" 
+                OffContent="Imperial to Metric">
+            </ToggleSwitch>
+        </Grid>
+    </Grid>
+</Page>
