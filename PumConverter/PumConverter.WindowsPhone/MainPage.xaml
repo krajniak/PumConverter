@@ -49,7 +49,7 @@
             <Viewbox Grid.Row="0">
                 <TextBlock Text="{Binding EntryValue}"/>
             </Viewbox>
-            <Button Grid.Row="1" DataContext="{Binding ConverterEntry}">
+            <Button Grid.Row="1" DataContext="{Binding ConverterEntry}" Command="{Binding NextNamedUnitCommand}">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding From}" Style ="{StaticResource ConvertertEntryStyle}"/>
                     <TextBlock Text="{Binding To}"  Style ="{StaticResource ConvertertEntryStyle}"/>

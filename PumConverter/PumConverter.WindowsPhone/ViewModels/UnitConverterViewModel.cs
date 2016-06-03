@@ -58,7 +58,7 @@ namespace PumConverter.ViewModels
 
             OnScreenKeyboardButtons = buttonList;
 
-            ConverterEntry = new UnitConverterEntryViewModel(this);
+            ConverterEntry = new UnitConverterEntryViewModel(this, Model.Units.UnitSystem.Metric, Model.Units.UnitCategory.Weight);
         }
 
 
