@@ -18,7 +18,7 @@ namespace PumConverter.Model.Units
         {
             System = system;
             Category = category;
-            ToSiMultiplier = ToSiMultiplier;
+            ToSiMultiplier = toSiMultiplier;
             FullName = fullName;
             Abbreviation = abbreviation;
         }
