@@ -55,8 +55,25 @@ namespace PumConverter.Model.Currencies
             return await table.ReadAsync();
         }
 
+        private static async Task SeedAsync()
+        {
+            var client = new MobileServiceClient("https://pumconverter.azurewebsites.net/");
+
+            var t = client.GetTable<Rates>();
+            await t.InsertAsync(
+                new Model.Currencies.Rates { Id = "1", First = "USD", Second = "EUR", Rate = 0.85M });
+            await t.InsertAsync(
+                new Model.Currencies.Rates { Id = "2", First = "EUR", Second = "PLN", Rate = 4.3M });
+            await t.InsertAsync(
+            new Model.Currencies.Rates { Id = "3", First="USD", Second="PLN", Rate=3.99M  });
+            await t.InsertAsync(
+            new Model.Currencies.Rates { Id = "4", First = "GBP", Second = "PLN", Rate = 6.00M });
+
+        }
+
         public static async Task LoadRatesAsync()
         {
+            await SeedAsync();
             var downloadedRates = await RetrieveCurrencyRatesTablesAsync();
             _currencies = downloadedRates
                 .Select(r => r.First)
