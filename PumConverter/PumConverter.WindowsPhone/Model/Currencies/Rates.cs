@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PumConverter.Model.Currencies
 {
-    public class CurrencyRate
+    public class Rates
     {
+        public string Id { get; set; }
         public string First { get; set; }
         public string Second { get; set; }
         public Decimal Rate { get; set; }
